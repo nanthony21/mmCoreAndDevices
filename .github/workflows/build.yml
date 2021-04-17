@@ -1,11 +1,9 @@
 name: Build
-
 on:
   workflow_dispatch
-
 jobs:
   testBuild:
-    name: Merge main into privateMain after each new commit
+    name: Build
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
