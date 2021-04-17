@@ -6,6 +6,7 @@ jobs:
     name: Build
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false # Don't cancel all jobs if one fails.
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
         include:
