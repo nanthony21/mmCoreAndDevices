@@ -1,0 +1,41 @@
+name: Build
+
+on:
+  workflow_dispatch
+
+jobs:
+  testBuild:
+    name: Merge main into privateMain after each new commit
+    runs-on: runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+        include:
+        - os: macos-latest
+          TARGET: x86_64-apple-darwin
+          COMPILER: clang
+          LINKER: clang
+
+        - os: windows-latest
+          TARGET: Windows MSVC
+          COMPILER: msvc
+          LINKER: msvc
+
+        - os: ubuntu-latest
+          TARGET: x86_64-unknown-linux-musl
+          COMPILER: gcc
+          LINKER: gcc
+          
+    steps:
+      - run: echo ${{matrix.TARGET}}
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v1
+      - uses: BSFishy/meson-build@v1.0.3
+        with:
+          action: install
+          directory: build
+          meson-version: 0.57.2
