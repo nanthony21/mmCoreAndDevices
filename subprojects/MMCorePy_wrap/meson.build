@@ -12,7 +12,7 @@ else
     add_project_arguments('-D_DEBUG', language : ['cpp'])
 endif
 
-	
+# Generate c++ and python source, python file will be installed under `MMCorePySource`	
 swig = find_program('swig')
 cpp_source = custom_target(
     'MMCorePy_generate_source',
@@ -23,7 +23,6 @@ cpp_source = custom_target(
     command: [swig, '-c++', '-python', '-outdir', '@OUTDIR@', 
         '-o', '@OUTPUT0@', '@INPUT@']
 )
-#install_data(meson.project_build_root() / 'MMCorePy.py', install_dir: 'MMCorePySource')
 
 # Get the numpy include path
 pymod = import('python')
