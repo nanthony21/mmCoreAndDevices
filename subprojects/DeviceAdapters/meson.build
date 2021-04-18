@@ -1,6 +1,7 @@
 project('DeviceAdapters', 'cpp', version : '0.0.1',
 	default_options: [
-		'default_library=shared'  # Build DLLs rather than Libs
+		'default_library=shared',  # Build DLLs rather than Libs
+		'cpp_std=c++03'
 	]
 )
 

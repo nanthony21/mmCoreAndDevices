@@ -1,4 +1,8 @@
-project('MMCore', 'cpp', version : '0.0.1')
+project('MMCore', 'cpp', version : '0.0.1',
+	default_options: [
+		'cpp_std=c++03'
+	]
+)
 
 add_project_arguments('-D_LIB', language: ['cpp'])
 
