@@ -32,9 +32,9 @@ swig = find_program('swig') # Make sure you have swig3 on your path.
 cpp_source = custom_target(
     'MMCoreJ_generate_source',
     input: ['MMCoreJ.i'],
-    output: ['@BASENAME@.cxx'],  # I'm not sure why but swig doesn't want to have the .h defined here, it'll still be generated.
+    output: ['@BASENAME@.cxx', '@BASENAME@.h'],  # I'm not sure why but swig doesn't want to have the .h defined here, it'll still be generated.
     command: [swig, '-c++', '-java', '-package', 'mmcorej', '-module', 'MMCoreJ', '-outdir', '@OUTDIR@' / 'javaSource' / 'main' / 'java' / 'mmcorej', 
-        '-o', '@OUTPUT@', '@INPUT@']
+        '-o', '@OUTPUT0@', '@INPUT@']
 )
 
 # Copy java source from the build directory to install at install time.

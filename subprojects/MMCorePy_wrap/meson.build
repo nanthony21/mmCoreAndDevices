@@ -17,9 +17,9 @@ swig = find_program('swig')
 cpp_source = custom_target(
     'MMCorePy_generate_source',
     input: ['MMCorePy.i'],
-    output: ['@BASENAME@.cxx', '@BASENAME@.py'],  # I'm not sure why but swig doesn't want to have the .h defined here, it'll still be generated.
+    output: ['@BASENAME@.cxx', '@BASENAME@.h', '@BASENAME@.py'],
     install: true,
-    install_dir: [false, 'MMCorePySource'],
+    install_dir: [false, false, 'MMCorePySource'],
     command: [swig, '-c++', '-python', '-outdir', '@OUTDIR@', 
         '-o', '@OUTPUT0@', '@INPUT@']
 )

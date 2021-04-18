@@ -1,4 +1,8 @@
-project('MMDevice', 'cpp', version : '0.0.1')
+project('MMDevice', 'cpp', version : '0.0.1',
+	default_options: [
+		'cpp_std=c++03'
+	]
+)
 
 #mm_version = meson.project_version()
 #ver_arr = mm_version.split('.')
