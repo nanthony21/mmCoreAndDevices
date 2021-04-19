@@ -6,7 +6,7 @@ project('mmCoreAndDevices', 'cpp', version : '0.0.1',
 
 subproject('MMDevice')
 subproject('MMCore')
-#subproject('3rdPartyPrivate')  # having this line not here allows the project to still run if the project is missing. If the project isn't missing then it will still be detected when needed.
+subproject('3rdPartyPrivate', required: false)
 
 if get_option('MMCOREJ')
 	subproject('MMCoreJ_wrap')

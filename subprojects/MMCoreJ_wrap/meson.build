@@ -32,8 +32,9 @@ swig = find_program('swig') # Make sure you have swig3 on your path.
 cpp_source = custom_target(
     'MMCoreJ_generate_source',
     input: ['MMCoreJ.i'],
-    output: ['@BASENAME@.cxx', '@BASENAME@.h'],  # I'm not sure why but swig doesn't want to have the .h defined here, it'll still be generated.
-    command: [swig, '-c++', '-java', '-package', 'mmcorej', '-module', 'MMCoreJ', '-outdir', '@OUTDIR@' / 'javaSource' / 'main' / 'java' / 'mmcorej', 
+    output: ['@BASENAME@.cxx', '@BASENAME@.h'],
+    command: [swig, '-c++', '-java', '-package', 'mmcorej', '-module', 'MMCoreJ',
+        '-outdir', '@OUTDIR@' / 'javaSource' / 'main' / 'java' / 'mmcorej', 
         '-o', '@OUTPUT0@', '@INPUT@']
 )
 
@@ -45,8 +46,4 @@ deps = [
 	dependency('MMCore', fallback: 'MMCore')
 ]
 
-includes = [
-	include_directories('.')
-]
-
-shared_library('MMCoreJ_wrap', cpp_source, include_directories: includes, dependencies: deps, install: true)
+shared_library('MMCoreJ_wrap', cpp_source, dependencies: deps, install: true)

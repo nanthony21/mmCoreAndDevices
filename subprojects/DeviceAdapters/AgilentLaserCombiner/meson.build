@@ -14,7 +14,6 @@ if SDK_dep.found()
 		'AgilentLaserCombiner.cpp'
 	]
 
-
 	library('AgilentLaserCombiner', sources, include_directories: includes, dependencies : deps, install: true)
 else
 	message('Skipping AgilentLaserCombiner DeviceAdapter. No SDK found.')

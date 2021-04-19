@@ -6,7 +6,7 @@ if SDK_dep.found()
 		]
 
 	deps = [
-		dependency('boost', modules: ['filesystem']),
+		dependency('boost', modules: ['filesystem'], static: true),
 		MMDevice_dep,
 		SDK_dep
 		]
@@ -18,7 +18,6 @@ if SDK_dep.found()
 		'SRRFAndorCamera.cpp',
 		'SRRFControl.cpp'
 	]
-
 
 	library('Andor', sources, include_directories: includes, dependencies : deps, install: true)
 else

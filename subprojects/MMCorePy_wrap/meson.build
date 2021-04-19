@@ -28,17 +28,11 @@ cpp_source = custom_target(
 pymod = import('python')
 python = pymod.find_installation('python2', modules: ['numpy'])
 cmd = run_command(python, '-c',  'import numpy; print(numpy.get_include())')
-np_inc = include_directories(cmd.stdout().strip())
-
-includes = [
-	include_directories('.'),
-	np_inc
-	]
+numpy_include = include_directories(cmd.stdout().strip())
 
 deps = [
-    python.dependency(default_options: ['buildtype=release']),  # Even if we are building debug get the normal linker path, most people don't have the debug dependency installed.
+    python.dependency(),
 	dependency('MMCore', fallback: 'MMCore')
     ]
 
-
-shared_library('MMCorePy_wrap', cpp_source, include_directories: includes, dependencies: deps, install: true)
+shared_library('MMCorePy_wrap', cpp_source, include_directories: numpy_include, dependencies: deps, install: true)

@@ -16,14 +16,9 @@ else
     add_project_arguments('-DDEBUG', language : ['cpp'])
 endif
 
-includes = include_directories('.') # include the main directory
-
-MMDevice_dep = dependency('MMDevice', fallback: 'MMDevice')
-boost_dep = dependency('boost', modules: ['chrono', 'date_time', 'regex', 'system', 'thread'])
-
 deps = [
-	boost_dep,
-	MMDevice_dep
+	dependency('MMDevice', fallback: 'MMDevice'),
+	dependency('boost', modules: ['chrono', 'date_time', 'regex', 'system', 'thread'], static: true)
 	]
 	
 sources = [  # Must explicitly list all source files.
@@ -72,7 +67,6 @@ else
 endif
 
 cxx = meson.get_compiler('cpp')
-
 if host_machine.system() == 'windows'
 	iphlpapi_dep = cxx.find_library('iphlpapi')
 	deps += [iphlpapi_dep]
@@ -81,6 +75,6 @@ elif host_machine.system() == 'linux'
 	deps += [libdl_dep]
 endif
 
-MMCore_lib = static_library('MMCore', sources, include_directories: includes, dependencies : deps)
-MMCore_dep = declare_dependency(include_directories: includes, link_with: MMCore_lib, dependencies: deps)
+MMCore_lib = static_library('MMCore', sources, dependencies : deps)
+MMCore_dep = declare_dependency(include_directories: include_directories('.'), link_with: MMCore_lib, dependencies: deps)
 meson.override_dependency('MMCore', MMCore_dep)
