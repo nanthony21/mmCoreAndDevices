@@ -2,31 +2,10 @@ name: Build
 on:
   workflow_dispatch
 jobs:
-  testBuild:
-    name: Build
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false # Don't cancel all jobs if one fails.
-      matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
-        include:
-        - os: macos-latest
-          TARGET: x86_64-apple-darwin
-          COMPILER: clang
-          LINKER: clang
-
-        - os: windows-latest
-          TARGET: Windows MSVC
-          COMPILER: msvc
-          LINKER: msvc
-
-        - os: ubuntu-latest
-          TARGET: x86_64-unknown-linux-musl
-          COMPILER: gcc
-          LINKER: gcc
-          
+  MacBuild:
+    name: Mac Build
+    runs-on: macos-latest          
     steps:
-      - run: echo ${{matrix.TARGET}}
       - name: checkout
         uses: actions/checkout@v2
         with:
@@ -47,14 +26,64 @@ jobs:
           Start-Process -Wait -FilePath "$env:TEMP\boost.exe","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\hostedtoolcache\windows\Boost\1.72.0\x86_64"
       - name: Install Boost Linux
         if: matrix.os=='ubuntu-latest'
-        run: |
-          sudo apt update
-          sudo apt install libboost-all-dev
+
       - name: Install Boost Mac
-        if: matrix.os=='macos-latest'
         run: brew install boost
       - uses: BSFishy/meson-build@v1.0.3
         with:
           action: install
           directory: build
           meson-version: 0.57.2
+  UbuntuBuild:
+    name: Ubuntu Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          token: ${{ secrets.PRIVATE_REPO_PAT }}  # Generate this Token to give access to private submodules.
+      - uses: actions/setup-python@v1
+      - name: Setup Java JDK
+        uses: actions/setup-java@v2.0.0
+        with:
+          # The Java version to set up. Takes a whole or semver Java version. See examples of supported syntax in README file
+          java-version: 8
+          distribution: 'adopt'
+      - name: Install Boost
+        run: |
+          sudo apt update
+          sudo apt install libboost-all-dev
+      - uses: BSFishy/meson-build@v1.0.3
+        with:
+          action: install
+          directory: build
+          meson-version: 0.57.2
+  WindowsBuild:
+    name: Windows Build
+    runs-on: windows-latest          
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          token: ${{ secrets.PRIVATE_REPO_PAT }}  # Generate this Token to give access to private submodules.
+      - uses: actions/setup-python@v1
+      - name: Setup Java JDK
+        uses: actions/setup-java@v2.0.0
+        with:
+          # The Java version to set up. Takes a whole or semver Java version. See examples of supported syntax in README file
+          java-version: 8
+          distribution: 'adopt'
+      - name: Install Boost Windows
+        run: |
+          $Url = "https://sourceforge.net/projects/boost/files/boost-binaries/1.75.0/boost_1_75_0-msvc-14.2-64.exe"
+          (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
+          Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\hostedtoolcache\windows\Boost\1.72.0\x86_64"
+      - uses: BSFishy/meson-build@v1.0.3
+        with:
+          action: install
+          directory: build
+          meson-version: 0.57.2
+      
+    
