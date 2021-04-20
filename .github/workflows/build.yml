@@ -66,7 +66,16 @@ jobs:
           # The Java version to set up. Takes a whole or semver Java version. See examples of supported syntax in README file
           java-version: 8
           distribution: 'adopt'
-      - name: Install Boost Windows
+      - name: Cache Boost
+        id: cache-boost
+        uses: actions/cache@v2
+        env:
+          cacheName: "boost_1_75_0-msvc-14.2"
+        with:
+          path: C:\hostedtoolcache\windows\Boost\1.72.0\x86_64
+          key: ${{ env.cache-name }}
+      - name: Install Boost
+        if: steps.cache-boost.outputs.cache-hit != 'false'
         run: |
           $Url = "https://sourceforge.net/projects/boost/files/boost-binaries/1.75.0/boost_1_75_0-msvc-14.2-64.exe"
           (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
