@@ -70,7 +70,7 @@ jobs:
         id: cache-boost
         uses: actions/cache@v2
         env:
-          cacheName: "boost_1_75_0-msvc-14.2"
+          cache-name: "boost_1_75_0-msvc-14.2"  # Change this name to start using a new cache.
         with:
           path: C:\hostedtoolcache\windows\Boost\1.72.0\x86_64
           key: ${{ env.cache-name }}
