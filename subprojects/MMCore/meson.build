@@ -75,6 +75,6 @@ elif host_machine.system() == 'linux'
 	deps += [libdl_dep]
 endif
 
-MMCore_lib = static_library('MMCore', sources, dependencies : deps)
+MMCore_lib = static_library('MMCore', sources, dependencies: deps)
 MMCore_dep = declare_dependency(include_directories: include_directories('.'), link_with: MMCore_lib, dependencies: deps)
 meson.override_dependency('MMCore', MMCore_dep)

@@ -7,7 +7,8 @@ if SDK_dep.found()
 
 	deps = [
 		MMDevice_dep,
-		SDK_dep
+		SDK_dep,
+		dependency('boost', static: true)
 		]
 		
 	sources = [  # Must explicitly list all source files.

@@ -5,7 +5,8 @@ includes = [
     ]
 
 deps = [
-	MMDevice_dep
+	MMDevice_dep,
+	dependency('boost', modules: ['thread'], static: true)
 	]
 	
 sources = [  # Must explicitly list all source files.

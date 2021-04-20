@@ -5,7 +5,8 @@ includes = [
     ]
 
 deps = [
-	MMDevice_dep
+	MMDevice_dep,
+	dependency('Leica_Camera_SDK_1.7', fallback: '3rdPartyPrivate')
 	]
 	
 sources = [  # Must explicitly list all source files.
