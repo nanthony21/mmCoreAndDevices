@@ -2,3 +2,7 @@
 	path = subprojects/3rdPartyPrivate
 	url = https://github.com/nanthony21/MM_CPP_3rdParty_Private.git
 	branch = main
+[submodule "subprojects/3rdPartyPublic"]
+	path = subprojects/3rdPartyPublic
+	url = https://github.com/nanthony21/MM_CPP_3rdParty_Public.git
+	branch = master
