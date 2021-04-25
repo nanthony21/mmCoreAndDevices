@@ -5,7 +5,8 @@ if SDK_dep.found()
 		]
 
 	deps = [
-		MMDevice_dep
+		MMDevice_dep,
+		SDK_dep
 		]
 		
 	sources = [  # Must explicitly list all source files.

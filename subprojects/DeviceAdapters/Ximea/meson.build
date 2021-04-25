@@ -5,7 +5,9 @@ includes = [
     ]
 
 deps = [
-	MMDevice_dep
+	MMDevice_dep,
+	dependency('XimeaAPI', fallback: '3rdPartyPrivate'),
+	dependency('pugixml', fallback: '3rdPartyPublic')
 	]
 	
 sources = [  # Must explicitly list all source files.
