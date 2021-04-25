@@ -1,17 +1,18 @@
-
-
-includes = [
-    include_directories('.') # include the main directory
-    ]
-
 deps = [
-	MMDevice_dep
-	]
-	
-sources = [  # Must explicitly list all source files.
-	
+    dependency('MMDevice', fallback: 'MMDevice'),
+    dependency('boost')
 ]
 
+#### ArduinoNeoPixelShutter ###
+dir = 'ArduinoNeoPixelShutter'
+library(dir, dir / 'ArduinoNeoPixelShutter.cpp', install: true, dependencies: deps, include_directories: dir)
 
-library('CNCMicroscope', sources, include_directories: includes, dependencies : deps, install: true)
 
+#### RAMPS Stage ####
+dir = 'RAMPSStage'
+sources = [
+    dir / 'RAMPS.cpp',
+    dir / 'XYStage.cpp',
+    dir / 'ZStage.cpp'
+]
+library('RAMPS', sources, include_directories: dir, dependencies: deps, install: true)

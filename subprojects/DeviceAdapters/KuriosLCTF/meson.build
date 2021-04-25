@@ -5,7 +5,8 @@ includes = [
     ]
 
 deps = [
-	MMDevice_dep
+	MMDevice_dep,
+	dependency('KuriosSDK', fallback: '3rdPartyPublic')
 	]
 	
 sources = [  # Must explicitly list all source files.
