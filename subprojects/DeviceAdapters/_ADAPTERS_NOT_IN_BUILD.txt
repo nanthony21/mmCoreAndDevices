@@ -9,6 +9,7 @@ Updated for migration to Meson:
 	Basler also too complicated.
 	ITC18 windows: SDK binaries were too old to use. Source could not be compiled on windows.
 	BioStepEagleIce: Only supported 32 bit build which we are now dropping. Couldn't find any info about this device online.
+	FLICamera: SDK binaries only support VC100. Need to update.
 	Jenoptik: Compiler Errors.
 	MCL_Nano and Micro Drive: Compiler errors, probably need to recompile SDK: 
 		MadLib64.lib(CNanoDrive.obj) : error LNK2001: unresolved external symbol printf
