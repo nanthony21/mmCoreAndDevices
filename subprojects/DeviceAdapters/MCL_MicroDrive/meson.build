@@ -1,5 +1,6 @@
 
 SDK_dep = meson.get_compiler('cpp').find_library('MicroDrive64', dirs: meson.current_source_dir(), required: false)
+SDK_dep = disabler()
 if SDK_dep.found()
 	includes = [
 		include_directories('.') # include the main directory

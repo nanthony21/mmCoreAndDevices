@@ -1,4 +1,5 @@
 SDK_dep = meson.get_compiler('cpp').find_library('MadLib64', dirs: meson.current_source_dir(), required: false)
+SDK_dep = disabler()
 if SDK_dep.found()
 
 	includes = [

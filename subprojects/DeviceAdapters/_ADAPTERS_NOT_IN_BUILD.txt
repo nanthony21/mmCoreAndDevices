@@ -16,3 +16,5 @@ Updated for migration to Meson:
 		MadLib64.lib(core.obj) : error LNK2001: unresolved external symbol _snprintf
 		MadLib64.lib(core.obj) : error LNK2001: unresolved external symbol _vsnprintf
 		MadLib64.lib(windows_winusb.obj) : error LNK2001: unresolved external symbol sscanf
+	NIDAQ: Binary of SDK is missing. No longer supported.
+	ZeissAxioZoom: DATABYTES undeclared identifier
