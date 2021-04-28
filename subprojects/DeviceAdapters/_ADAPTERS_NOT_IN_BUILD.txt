@@ -10,3 +10,9 @@ Updated for migration to Meson:
 	ITC18 windows: SDK binaries were too old to use. Source could not be compiled on windows.
 	BioStepEagleIce: Only supported 32 bit build which we are now dropping. Couldn't find any info about this device online.
 	Jenoptik: Compiler Errors.
+	MCL_Nano and Micro Drive: Compiler errors, probably need to recompile SDK: 
+		MadLib64.lib(CNanoDrive.obj) : error LNK2001: unresolved external symbol printf
+		MadLib64.lib(core.obj) : error LNK2001: unresolved external symbol __iob_func
+		MadLib64.lib(core.obj) : error LNK2001: unresolved external symbol _snprintf
+		MadLib64.lib(core.obj) : error LNK2001: unresolved external symbol _vsnprintf
+		MadLib64.lib(windows_winusb.obj) : error LNK2001: unresolved external symbol sscanf

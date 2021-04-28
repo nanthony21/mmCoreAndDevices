@@ -13,7 +13,6 @@ if dep.found()
 		'HIDManager.cpp'
 	]
 
-
 	library('HIDManager', sources, include_directories: includes, dependencies : deps, install: true)
 else
 	message('Skipping HIDManager. hidapi not found.')
