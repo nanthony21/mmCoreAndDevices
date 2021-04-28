@@ -9,8 +9,7 @@ deps = [
 	]
 	
 sources = [  # Must explicitly list all source files.
-	'CIA.cpp',
-	'LECtrl.cpp'
+	'CIA.cpp'
 ]
 
 
