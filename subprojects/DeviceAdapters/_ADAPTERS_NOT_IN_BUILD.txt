@@ -19,4 +19,5 @@ Updated for migration to Meson:
 	Mightex: Relies on old version of windows DDK. doesn't work for new compilers.
 	NIDAQ: Binary of SDK is missing. No longer supported.
 	NIMotionStageController: SDK only supported 32bit
+	SPOT (windows): Only supported 32 bit. If re-added should be included in the original Spot project, not copy a separate project.
 	ZeissAxioZoom: DATABYTES undeclared identifier
