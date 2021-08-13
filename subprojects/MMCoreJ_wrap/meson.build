@@ -42,7 +42,7 @@ cpp_source = custom_target(
 install_subdir(meson.project_build_root() / 'javaSource', install_dir: '.')  
 
 deps = [
-    dependency('jni'),
+    dependency('jni'),  # This only works on Windows (thanks to CMAKE). The "jdk" dependency should be better but needs to use a "host file" to work, see #8229 on Meson github
 	dependency('MMCore', fallback: 'MMCore')
 ]
 

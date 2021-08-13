@@ -1,4 +1,4 @@
-project('mmCoreAndDevices', 'cpp', version : '0.0.1',
+project('mmCoreAndDevices', ['cpp'], version : '0.0.1',
 	default_options: [
 		'prefix=@0@'.format(meson.project_source_root() / 'stage')
 	]
