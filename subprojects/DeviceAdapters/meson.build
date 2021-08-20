@@ -9,6 +9,7 @@ MMDevice_dep = dependency('MMDevice', fallback: ['MMDevice'])
 
 add_project_arguments('-DMODULE_EXPORTS', language: ['cpp'])
 
+# TODO these compiler arguments were taken from the visual studio projects. Are they actually needed?
 if host_machine.system() == 'windows'
 	add_project_arguments('-DWIN32', '-D_WINDOWS', language: ['cpp'])
 endif
